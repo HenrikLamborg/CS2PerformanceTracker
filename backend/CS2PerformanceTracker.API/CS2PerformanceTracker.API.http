@@ -1,0 +1,6 @@
+@CS2PerformanceTracker.API_HostAddress = http://localhost:5007
+
+GET {{CS2PerformanceTracker.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
