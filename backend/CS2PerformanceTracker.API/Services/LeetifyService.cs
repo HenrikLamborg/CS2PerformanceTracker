@@ -1,0 +1,34 @@
+﻿using CS2PerformanceTracker.API.DTOs;
+using System.Net.Http.Json;
+
+namespace CS2PerformanceTracker.API.Services;
+
+public class LeetifyService
+{
+    private readonly HttpClient _httpClient;
+    private readonly IConfiguration _configuration;
+
+    public LeetifyService(HttpClient httpClient, IConfiguration configuration)
+    {
+        _httpClient = httpClient;
+        _configuration = configuration;
+    }
+
+    public async Task<LeetifyProfileResponse?> GetPlayerProfile(string steam64Id)
+    {
+        var apiKey = _configuration["Leetify:ApiKey"];
+
+        var request = new HttpRequestMessage(
+            HttpMethod.Get,
+            $"https://api-public.cs-prod.leetify.com/v3/profile?steam64_id={steam64Id}"
+        );
+
+        request.Headers.Add("_leetify_key", apiKey);
+
+        var response = await _httpClient.SendAsync(request);
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<LeetifyProfileResponse>();
+    }
+}
