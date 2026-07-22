@@ -7,12 +7,18 @@
 
         public int FaceitLevel { get; set; }
 
-        public double KillDeathRatio { get; set; }
+        public double LeetifyRating { get; set; }
 
-        public double HeadshotPercentage { get; set; }
+        public double Aim { get; set; }
 
-        public int TotalKills { get; set; }
+        public double Utility { get; set; }
 
-        public int TotalDeaths { get; set; }
+        public double Positioning { get; set; }
+
+        public double ReactionTimeMs { get; set; }
+
+        public double SprayAccuracy { get; set; }
+
+        public double Preaim { get; set; }
     }
 }
