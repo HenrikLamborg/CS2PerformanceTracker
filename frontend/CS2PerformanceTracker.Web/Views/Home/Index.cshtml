@@ -1,5 +1,41 @@
 ﻿@model CS2PerformanceTracker.Web.Models.PlayerStatsResponse
 
+@functions {
+    string GetAimColor(double value)
+    {
+        if (value >= 90)
+        {
+            return "text-danger";
+        }
+
+        if (value >= 60)
+        {
+            return "text-success";
+        }
+
+        return "text-primary";
+    }
+    
+    
+    string GetReactionTimeColor(double value)
+    {
+        if (value < 200)
+            return "text-warning";
+
+        return "text-primary";
+    }
+
+    string GetPreaimColor(double value)
+    {
+        if (value < 8)
+        {
+            return "text-danger";
+        }
+       
+        return "text-primary";
+    }
+}
+
 <h1 class="mb-4">CS2 Performance Tracker</h1>
 
 <form method="post" class="mb-5">
@@ -50,7 +86,7 @@
 
             <p>
                 Leetify Rating:
-                <strong>@Model.LeetifyRating</strong>
+                <strong>@Model.LeetifyRating.ToString("0.0")</strong>
             </p>
 
         </div>
@@ -62,17 +98,29 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Aim</h5>
-                    <h2>@Model.Aim</h2>
+                    <h2 class="@GetAimColor(Model.Aim)">
+                        @Model.Aim.ToString("0.0")
+                    </h2>
                 </div>
             </div>
         </div>
 
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Preaim</h5>
+                    <h2 class="@GetPreaimColor(Model.Preaim)">
+                        @Model.Preaim.ToString("0.0")
+                    </h2>
+                </div>
+            </div>
+        </div>
 
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-body">
                     <h5>Utility</h5>
-                    <h2>@Model.Utility</h2>
+                    <h2>@Model.Utility.ToString("0.0")</h2>
                 </div>
             </div>
         </div>
@@ -82,7 +130,27 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Positioning</h5>
-                    <h2>@Model.Positioning</h2>
+                    <h2>@Model.Positioning.ToString("0.0")</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>ReactionTimeMs</h5>
+                    <h2 class="@GetReactionTimeColor(Model.ReactionTimeMs)">
+                        @Model.ReactionTimeMs.ToString("0")
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>SprayAccuracy</h5>
+                    <h2>@Model.SprayAccuracy.ToString("0.0")</h2>
                 </div>
             </div>
         </div>
