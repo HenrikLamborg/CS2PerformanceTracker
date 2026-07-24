@@ -3,8 +3,12 @@ using System.Net.Http.Json;
 
 namespace CS2PerformanceTracker.API.Services;
 
+/// <summary>
+/// Responsible for making HTTP requests to the Leetify API and retrieving player profile data.
+/// </summary>
 public class LeetifyService
 {
+    // It uses an HttpClient to send requests and an IConfiguration to access configuration settings, such as the API key.
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
 

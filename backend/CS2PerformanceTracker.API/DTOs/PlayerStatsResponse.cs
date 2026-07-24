@@ -1,5 +1,8 @@
 ﻿namespace CS2PerformanceTracker.API.DTOs
 {
+    /// <summary>
+    /// Represents the response containing player statistics.
+    /// </summary>
     public class PlayerStatsResponse
     {
         public string SteamId { get; set; } = string.Empty;
