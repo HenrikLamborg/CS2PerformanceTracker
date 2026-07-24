@@ -10,10 +10,16 @@ public class HomeController : Controller
     // Inject HttpClient into the controller
     private readonly HttpClient _httpClient;
 
-    // Constructor to inject HttpClient
-    public HomeController(HttpClient httpClient)
+    // Inject IConfiguration into the controller
+    private readonly IConfiguration _configuration;
+
+    // Constructor to initialize the HttpClient and IConfiguration
+    public HomeController(
+    HttpClient httpClient,
+    IConfiguration configuration)
     {
         _httpClient = httpClient;
+        _configuration = configuration;
     }
 
     public IActionResult Index()
@@ -24,8 +30,10 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(string steamId)
     {
+        var apiUrl = _configuration["ApiSettings:BaseUrl"];
+
         var response = await _httpClient.GetAsync(
-            $"https://localhost:7278/api/stats/{steamId}"
+            $"{apiUrl}/api/stats/{steamId}"
         );
 
         response.EnsureSuccessStatusCode();
