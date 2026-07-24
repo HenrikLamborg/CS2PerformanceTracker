@@ -36,10 +36,21 @@ public class HomeController : Controller
             $"{apiUrl}/api/stats/{steamId}"
         );
 
-        response.EnsureSuccessStatusCode();
+        // Check if the response is successful
+        if (!response.IsSuccessStatusCode)
+        {
+            ViewBag.Error = "Could not retrieve player data.";
+            return View();
+        }
 
         var player =
             await response.Content.ReadFromJsonAsync<PlayerStatsResponse>();
+
+        if (player == null)
+        {
+            ViewBag.Error = "Found no Leetify-profile with this SteamID.";
+            return View();
+        }
 
         return View(player);
     }
