@@ -1,6 +1,9 @@
 ﻿namespace CS2PerformanceTracker.API.DTOs;
 using System.Text.Json.Serialization;
 
+/// <summary>
+/// Respresents the response containing a player's profile information from Leetify.
+/// </summary>
 public class LeetifyProfileResponse
 {
     public string Name { get; set; } = string.Empty;

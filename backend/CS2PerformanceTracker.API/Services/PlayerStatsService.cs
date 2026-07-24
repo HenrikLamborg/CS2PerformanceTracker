@@ -2,6 +2,9 @@
 
 namespace CS2PerformanceTracker.API.Services;
 
+/// <summary>
+/// Responsible for converting the data from the LeetifyService into a PlayerStatsResponse object.
+/// </summary>
 public class PlayerStatsService
 {
     private readonly LeetifyService _leetifyService;

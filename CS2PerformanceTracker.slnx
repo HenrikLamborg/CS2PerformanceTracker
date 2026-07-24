@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/CS2PerformanceTracker.API/CS2PerformanceTracker.API.csproj" />
+  </Folder>
+  <Folder Name="/frontend/">
+    <Project Path="frontend/CS2PerformanceTracker.Web/CS2PerformanceTracker.Web.csproj" />
+  </Folder>
+</Solution>
