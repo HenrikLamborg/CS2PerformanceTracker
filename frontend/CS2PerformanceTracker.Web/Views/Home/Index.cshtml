@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model CS2PerformanceTracker.Web.Models.PlayerStatsResponse
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>CS2 Performance Tracker</h1>
+
+<form method="post">
+
+    <label>Steam64 ID</label>
+
+    <input type="text" name="steamId" />
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+
+@if (Model != null)
+{
+    <h2>@Model.Username</h2>
+
+    <p>Faceit Level: @Model.FaceitLevel</p>
+
+    <p>Leetify Rating: @Model.LeetifyRating</p>
+
+    <p>Aim: @Model.Aim</p>
+
+    <p>Utility: @Model.Utility</p>
+
+    <p>Positioning: @Model.Positioning</p>
+}
