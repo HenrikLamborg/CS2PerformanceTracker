@@ -1,31 +1,159 @@
 ﻿@model CS2PerformanceTracker.Web.Models.PlayerStatsResponse
 
-<h1>CS2 Performance Tracker</h1>
+@functions {
+    string GetAimColor(double value)
+    {
+        if (value >= 90)
+        {
+            return "text-danger";
+        }
 
-<form method="post">
+        if (value >= 60)
+        {
+            return "text-success";
+        }
 
-    <label>Steam64 ID</label>
+        return "text-primary";
+    }
+    
+    
+    string GetReactionTimeColor(double value)
+    {
+        if (value < 200)
+            return "text-warning";
 
-    <input type="text" name="steamId" />
+        return "text-primary";
+    }
 
-    <button type="submit">
+    string GetPreaimColor(double value)
+    {
+        if (value < 8)
+        {
+            return "text-danger";
+        }
+       
+        return "text-primary";
+    }
+}
+
+<h1 class="mb-4">CS2 Performance Tracker</h1>
+
+<form method="post" class="mb-5">
+
+    <div class="mb-3">
+        <label class="form-label">
+            Steam64 ID
+        </label>
+
+        <input type="text"
+               name="steamId"
+               class="form-control"
+               placeholder="Enter Steam64 ID" />
+    </div>
+
+    <button class="btn btn-primary">
         Search
     </button>
 
 </form>
 
+<!-- Display error message if there is one -->
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+
 
 @if (Model != null)
 {
-    <h2>@Model.Username</h2>
+    <div class="card mb-4">
+        <div class="card-body">
 
-    <p>Faceit Level: @Model.FaceitLevel</p>
+            <h2 class="card-title">
+                @Model.Username
+            </h2>
 
-    <p>Leetify Rating: @Model.LeetifyRating</p>
+            <p>
+                Steam ID: @Model.SteamId
+            </p>
 
-    <p>Aim: @Model.Aim</p>
+            <p>
+                Faceit Level:
+                <strong>@Model.FaceitLevel</strong>
+            </p>
 
-    <p>Utility: @Model.Utility</p>
+            <p>
+                Leetify Rating:
+                <strong>@Model.LeetifyRating.ToString("0.0")</strong>
+            </p>
 
-    <p>Positioning: @Model.Positioning</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Aim</h5>
+                    <h2 class="@GetAimColor(Model.Aim)">
+                        @Model.Aim.ToString("0.0")
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Preaim</h5>
+                    <h2 class="@GetPreaimColor(Model.Preaim)">
+                        @Model.Preaim.ToString("0.0")
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Utility</h5>
+                    <h2>@Model.Utility.ToString("0.0")</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Positioning</h5>
+                    <h2>@Model.Positioning.ToString("0.0")</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>ReactionTimeMs</h5>
+                    <h2 class="@GetReactionTimeColor(Model.ReactionTimeMs)">
+                        @Model.ReactionTimeMs.ToString("0")
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5>SprayAccuracy</h5>
+                    <h2>@Model.SprayAccuracy.ToString("0.0")</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
 }
