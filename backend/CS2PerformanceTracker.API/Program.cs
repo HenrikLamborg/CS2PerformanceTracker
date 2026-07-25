@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<PlayerStatsService>();
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<LeetifyService>();
+builder.Services.AddHttpClient<SteamService>();
 
 var app = builder.Build();
 

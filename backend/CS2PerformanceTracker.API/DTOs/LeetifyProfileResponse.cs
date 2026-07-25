@@ -25,13 +25,13 @@ public class LeetifyProfileResponse
 
 public class LeetifyRanks
 {
-    public double Leetify { get; set; }
+    public double? Leetify { get; set; }
 
-    public int Premier { get; set; }
+    public int? Premier { get; set; }
 
-    public int Faceit { get; set; }
+    public int? Faceit { get; set; }
 
-    public int FaceitElo { get; set; }
+    public int? FaceitElo { get; set; }
 }
 
 

@@ -33,7 +33,7 @@ public class HomeController : Controller
         var apiUrl = _configuration["ApiSettings:BaseUrl"];
 
         var response = await _httpClient.GetAsync(
-            $"{apiUrl}/api/stats/{steamId}"
+            $"{apiUrl}/api/stats/{Uri.EscapeDataString(steamId)}"
         );
 
         // Check if the response is successful
