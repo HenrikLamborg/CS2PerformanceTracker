@@ -28,6 +28,8 @@ public class PlayerStatsService
             return null;
         }
 
+        var steamProfile = await _steamService.GetPlayerSummary(steamId);
+
         var profile = await _leetifyService.GetPlayerProfile(steamId);
 
         if (profile == null)
@@ -39,6 +41,10 @@ public class PlayerStatsService
         {
             SteamId = profile.Steam64Id,
             Username = profile.Name,
+
+            SteamAvatarUrl = steamProfile?.AvatarFull ?? "",
+            SteamProfileUrl = steamProfile?.ProfileUrl ?? "",
+
             FaceitLevel = profile.Ranks.Faceit ?? 0,
             LeetifyRating = profile.Ranks.Leetify ?? 0.0,
 
