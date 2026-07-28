@@ -17,6 +17,11 @@ public class StatsController : ControllerBase
     [HttpGet("{steamId}")]
     public async Task<IActionResult> GetStats(string steamId)
     {
+        if (string.IsNullOrWhiteSpace(steamId))
+        {
+            return BadRequest("Steam ID or Steam profile URL is required.");
+        }
+
         var stats = await _playerStatsService.GetPlayerStats(steamId);
 
         if (stats == null)

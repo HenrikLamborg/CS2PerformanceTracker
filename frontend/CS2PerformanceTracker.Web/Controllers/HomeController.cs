@@ -1,7 +1,9 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using CS2PerformanceTracker.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Net.Http.Json;
+using System.Numerics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CS2PerformanceTracker.Web.Controllers;
 
@@ -30,6 +32,12 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Index(string steamId)
     {
+        if (string.IsNullOrWhiteSpace(steamId))
+        {
+            ViewBag.Error = "Please enter a Steam ID or Steam profile URL.";
+            return View();
+        }
+
         var apiUrl = _configuration["ApiSettings:BaseUrl"];
 
         var response = await _httpClient.GetAsync(
