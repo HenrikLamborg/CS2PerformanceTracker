@@ -20,5 +20,9 @@
         public double SprayAccuracy { get; set; }
 
         public double Preaim { get; set; }
+
+        public string SteamAvatarUrl { get; set; } = string.Empty;
+
+        public string SteamProfileUrl { get; set; } = string.Empty;
     }
 }

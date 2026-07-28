@@ -1,4 +1,5 @@
 ﻿using CS2PerformanceTracker.API.DTOs;
+using Microsoft.Extensions.Primitives;
 
 namespace CS2PerformanceTracker.API.Services
 {
@@ -68,6 +69,23 @@ namespace CS2PerformanceTracker.API.Services
             }
 
             return null;
+        }
+
+        // This method retrieves the player summary for a given Steam ID using the Steam Web API.
+        // It returns a SteamPlayer object containing the player's information, or null if the player is not found.
+        public async Task<SteamPlayer?> GetPlayerSummary(String steamId)
+        {
+            var apiKey = _configuration["Steam:ApiKey"];
+            var request = new HttpRequestMessage(
+                HttpMethod.Get,
+                $"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={apiKey}&steamids={steamId}"
+            );
+
+            var reponse = await _httpClient.SendAsync(request);
+            reponse.EnsureSuccessStatusCode();
+
+            var result = await reponse.Content.ReadFromJsonAsync<SteamPlayerSummaryResponse>();
+            return result?.Response.Players.FirstOrDefault();
         }
     }
 }

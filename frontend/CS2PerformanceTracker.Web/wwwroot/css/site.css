@@ -18,7 +18,9 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #121212;
+    color: #f1f1f1;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +30,50 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.card {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border: 1px solid #333;
+}
+
+.form-control {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+    .form-control:focus {
+        background-color: #1e1e1e;
+        color: #f1f1f1;
+    }
+
+    .form-control::placeholder {
+        color: #888;
+    }
+
+.form-label {
+    color: #f1f1f1;
+}
+
+.navbar {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333;
+}
+
+p {
+    color: #d0d0d0;
+}
+
+.subtitle {
+    color: #e0e0e0 !important;
+}
+
+.footer-text {
+    color: #a0a0a0;
+}
+
+.footer-text a {
+        color: #d0d0d0;
 }
