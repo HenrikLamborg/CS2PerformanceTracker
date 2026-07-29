@@ -1,4 +1,5 @@
 using CS2PerformanceTracker.Web.Models;
+using CS2PerformanceTracker.Web.Viewmodels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Net.Http.Json;
@@ -60,7 +61,13 @@ public class HomeController : Controller
             return View();
         }
 
-        return View(player);
+        var dashboard = new PlayerDashboardViewModel
+        {
+            Player = player,
+            RecentMatches = player.RecentMatches
+        };
+
+        return View(dashboard);
     }
 
     public IActionResult Privacy()
