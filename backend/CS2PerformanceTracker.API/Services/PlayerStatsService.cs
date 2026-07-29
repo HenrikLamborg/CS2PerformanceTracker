@@ -32,6 +32,8 @@ public class PlayerStatsService
 
         var profile = await _leetifyService.GetPlayerProfile(steamId);
 
+        var matches = await _leetifyService.GetRecentMatches(steamId);
+
         if (profile == null)
         {
             return null;
@@ -54,7 +56,27 @@ public class PlayerStatsService
 
             ReactionTimeMs = profile.Stats.ReactionTimeMs,
             SprayAccuracy = profile.Stats.SprayAccuracy,
-            Preaim = profile.Stats.Preaim
+            Preaim = profile.Stats.Preaim,
+
+            RecentMatches = matches?
+            .Take(10)
+            .Select(match =>
+            {
+                var stats = match.Stats.FirstOrDefault();
+
+                return new RecentMatchResponse
+                {
+                    MapName = match.MapName,
+                    FinishedAt = match.FinishedAt,
+
+                    Kills = stats?.TotalKills ?? 0,
+                    Deaths = stats?.TotalDeaths ?? 0,
+
+                    KdRatio = stats?.KdRatio ?? 0,
+                    LeetifyRating = stats?.LeetifyRating ?? 0
+                };
+            })
+            .ToList() ?? []
         };
     }
 }

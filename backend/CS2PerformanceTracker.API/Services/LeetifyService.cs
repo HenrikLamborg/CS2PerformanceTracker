@@ -35,4 +35,18 @@ public class LeetifyService
 
         return await response.Content.ReadFromJsonAsync<LeetifyProfileResponse>();
     }
+
+    public async Task<List<LeetifyMatch>?> GetRecentMatches(string steam64Id)
+    {
+        var response = await _httpClient.GetAsync(
+            $"https://api-public.cs-prod.leetify.com/v3/profile/matches?steam64_id={steam64Id}"
+        );
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
+        return await response.Content.ReadFromJsonAsync<List<LeetifyMatch>>();
+    }
 }

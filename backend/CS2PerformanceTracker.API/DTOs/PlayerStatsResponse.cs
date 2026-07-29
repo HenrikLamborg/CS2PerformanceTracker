@@ -27,5 +27,22 @@
         public string SteamAvatarUrl { get; set; } = string.Empty;
         
         public string SteamProfileUrl { get; set; } = string.Empty;
+
+        public List<RecentMatchResponse> RecentMatches { get; set; } = [];
+    }
+
+    public class RecentMatchResponse
+    {
+        public string MapName { get; set; } = string.Empty;
+
+        public DateTime FinishedAt { get; set; }
+
+        public int Kills { get; set; }
+
+        public int Deaths { get; set; }
+
+        public double KdRatio { get; set; }
+
+        public double LeetifyRating { get; set; }
     }
 }
