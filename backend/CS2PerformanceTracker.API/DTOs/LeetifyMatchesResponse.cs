@@ -33,6 +33,9 @@ namespace CS2PerformanceTracker.API.DTOs
         [JsonPropertyName("steam64_id")]
         public string Steam64Id { get; set; } = string.Empty;
 
+        [JsonPropertyName("initial_team_number")]
+        public int InitialTeamNumber { get; set; }
+
         [JsonPropertyName("total_kills")]
         public int TotalKills { get; set; }
 

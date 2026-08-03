@@ -189,6 +189,8 @@
                         <table class="table table-dark table-striped">
                             <thead>
                                 <tr>
+                                    <th>Result</th>
+                                    <th>Score</th>
                                     <th>Map</th>
                                     <th>Date</th>
                                     <th>Kills</th>
@@ -202,6 +204,21 @@
                                 @foreach (var match in Model.RecentMatches)
                                 {
                                     <tr>
+                                        <td>
+                                            @if (match.Won)
+                                            {
+                                                <span class="badge bg-success">Win</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Loss</span>
+                                            }
+                                        </td>
+
+                                        <td>
+                                            @match.Score
+                                        </td>
+
                                         <td>@match.MapName</td>
 
                                         <td>

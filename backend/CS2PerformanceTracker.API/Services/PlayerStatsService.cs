@@ -64,6 +64,12 @@ public class PlayerStatsService
             {
                 var stats = match.Stats.FirstOrDefault();
 
+                var playerTeam = match.TeamScores.FirstOrDefault(
+                    t => t.TeamNumber == stats?.InitialTeamNumber);
+
+                var enemyTeam = match.TeamScores.FirstOrDefault(
+                    t => t.TeamNumber != stats?.InitialTeamNumber);
+
                 return new RecentMatchResponse
                 {
                     MapName = match.MapName,
@@ -73,7 +79,15 @@ public class PlayerStatsService
                     Deaths = stats?.TotalDeaths ?? 0,
 
                     KdRatio = stats?.KdRatio ?? 0,
-                    LeetifyRating = stats?.LeetifyRating ?? 0
+                    LeetifyRating = stats?.LeetifyRating ?? 0,
+
+                    Won = playerTeam != null &&
+                          enemyTeam != null &&
+                          playerTeam.Score > enemyTeam.Score,
+
+                    Score = playerTeam != null && enemyTeam != null
+                          ? $"{playerTeam.Score}-{enemyTeam.Score}"
+                          : string.Empty
                 };
             })
             .ToList() ?? []
