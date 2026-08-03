@@ -13,5 +13,9 @@
         public double KdRatio { get; set; }
 
         public double LeetifyRating { get; set; }
+
+        public bool Won { get; set; }
+
+        public string Score { get; set; } = string.Empty;
     }
 }
