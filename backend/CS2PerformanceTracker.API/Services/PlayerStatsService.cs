@@ -39,6 +39,59 @@ public class PlayerStatsService
             return null;
         }
 
+        var recentMatches = matches?
+            .Take(10)
+            .Select(match =>
+            {
+        var stats = match.Stats.FirstOrDefault();
+
+        var playerTeam = match.TeamScores.FirstOrDefault(
+            t => t.TeamNumber == stats?.InitialTeamNumber);
+
+        var enemyTeam = match.TeamScores.FirstOrDefault(
+            t => t.TeamNumber != stats?.InitialTeamNumber);
+
+        return new RecentMatchResponse
+        {
+            MapName = match.MapName,
+            FinishedAt = match.FinishedAt,
+
+            Kills = stats?.TotalKills ?? 0,
+            Deaths = stats?.TotalDeaths ?? 0,
+
+            KdRatio = stats?.KdRatio ?? 0,
+            LeetifyRating = stats?.LeetifyRating ?? 0,
+
+            Won = playerTeam != null &&
+                  enemyTeam != null &&
+                  playerTeam.Score > enemyTeam.Score,
+
+            Score = playerTeam != null && enemyTeam != null
+                ? $"{playerTeam.Score}-{enemyTeam.Score}"
+                : string.Empty
+        };
+        })
+        .ToList() ?? [];
+
+        var performanceSummary = new PerformanceSummaryResponse
+        {
+            WinRate = recentMatches.Any()
+                ? recentMatches.Count(m => m.Won) * 100.0 / recentMatches.Count
+                : 0,
+
+            AverageKd = recentMatches.Any()
+                ? recentMatches.Average(m => m.KdRatio)
+                : 0,
+
+            AverageKills = recentMatches.Any()
+                ? recentMatches.Average(m => m.Kills)
+                : 0,
+
+            AverageRating = recentMatches.Any()
+                ? recentMatches.Average(m => m.LeetifyRating)
+                : 0
+        };
+
         return new PlayerStatsResponse
         {
             SteamId = profile.Steam64Id,
@@ -58,39 +111,10 @@ public class PlayerStatsService
             SprayAccuracy = profile.Stats.SprayAccuracy,
             Preaim = profile.Stats.Preaim,
 
-            RecentMatches = matches?
-            .Take(10)
-            .Select(match =>
-            {
-                var stats = match.Stats.FirstOrDefault();
+            RecentMatches = recentMatches,
+            PerformanceSummary = performanceSummary
+            
 
-                var playerTeam = match.TeamScores.FirstOrDefault(
-                    t => t.TeamNumber == stats?.InitialTeamNumber);
-
-                var enemyTeam = match.TeamScores.FirstOrDefault(
-                    t => t.TeamNumber != stats?.InitialTeamNumber);
-
-                return new RecentMatchResponse
-                {
-                    MapName = match.MapName,
-                    FinishedAt = match.FinishedAt,
-
-                    Kills = stats?.TotalKills ?? 0,
-                    Deaths = stats?.TotalDeaths ?? 0,
-
-                    KdRatio = stats?.KdRatio ?? 0,
-                    LeetifyRating = stats?.LeetifyRating ?? 0,
-
-                    Won = playerTeam != null &&
-                          enemyTeam != null &&
-                          playerTeam.Score > enemyTeam.Score,
-
-                    Score = playerTeam != null && enemyTeam != null
-                          ? $"{playerTeam.Score}-{enemyTeam.Score}"
-                          : string.Empty
-                };
-            })
-            .ToList() ?? []
         };
     }
 }

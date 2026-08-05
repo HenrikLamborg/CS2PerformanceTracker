@@ -29,6 +29,8 @@
         public string SteamProfileUrl { get; set; } = string.Empty;
 
         public List<RecentMatchResponse> RecentMatches { get; set; } = [];
+
+        public PerformanceSummaryResponse PerformanceSummary { get; set; } = new();
     }
 
     public class RecentMatchResponse

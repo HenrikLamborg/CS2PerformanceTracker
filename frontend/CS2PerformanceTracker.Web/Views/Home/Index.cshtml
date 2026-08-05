@@ -124,6 +124,57 @@
         </div>
     </div>
 
+    <div class="row mt-4">
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-secondary">Win Rate</h6>
+                    <h3>
+                        @Model.PerformanceSummary.WinRate.ToString("0")%
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-secondary">Average K/D</h6>
+                    <h3>
+                        @Model.PerformanceSummary.AverageKd.ToString("0.00")
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-secondary">Average Kills</h6>
+                    <h3>
+                        @Model.PerformanceSummary.AverageKills.ToString("0.0")
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-light h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-secondary">Average Rating</h6>
+                    <h3>
+                        @Model.PerformanceSummary.AverageRating.ToString("+0.00;-0.00")
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <div class="row">
 
         <div class="col-md-4 mb-3">
