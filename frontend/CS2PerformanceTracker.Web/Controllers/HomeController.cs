@@ -64,7 +64,8 @@ public class HomeController : Controller
         var dashboard = new PlayerDashboardViewModel
         {
             Player = player,
-            RecentMatches = player.RecentMatches
+            RecentMatches = player.RecentMatches,
+            PerformanceSummary = player.PerformanceSummary
         };
 
         return View(dashboard);

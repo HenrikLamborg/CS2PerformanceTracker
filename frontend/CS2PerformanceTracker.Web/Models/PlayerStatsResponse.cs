@@ -26,6 +26,9 @@ namespace CS2PerformanceTracker.Web.Models
         public string SteamAvatarUrl { get; set; } = string.Empty;
 
         public string SteamProfileUrl { get; set; } = string.Empty;
+
         public List<RecentMatchViewModel> RecentMatches { get; set; } = [];
+
+        public PerformanceSummaryViewModel PerformanceSummary { get; set; } = new();
     }
 }

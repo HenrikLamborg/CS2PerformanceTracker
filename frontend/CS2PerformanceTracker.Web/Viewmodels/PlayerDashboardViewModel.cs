@@ -6,5 +6,7 @@ namespace CS2PerformanceTracker.Web.Viewmodels
     {
         public PlayerStatsResponse? Player { get; set; }
         public List<RecentMatchViewModel> RecentMatches { get; set; } = [];
+
+        public PerformanceSummaryViewModel PerformanceSummary { get; set; } = new();
     }
 }
