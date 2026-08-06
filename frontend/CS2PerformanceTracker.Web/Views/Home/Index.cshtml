@@ -238,6 +238,7 @@
             </div>
         </div>
 
+
         @if (Model.RecentMatches.Any())
         {
             <div class="card mt-4">
@@ -308,4 +309,121 @@
         }
 
     </div>
+
+    <h3 class="mb-3">
+        Performance Trend
+    </h3>
+
+    <select id="metricSelector" class="form-select mb-3">
+        <option value="rating">Leetify Rating</option>
+        <option value="kd">K/D Ratio</option>
+        <option value="kills">Kills</option>
+        <option value="deaths">Deaths</option>
+    </select>
+
+    <canvas id="ratingChart"></canvas>
+}
+
+@section Scripts {
+    @if (Model?.RecentMatches != null && Model.RecentMatches.Any())
+    {
+        <script>
+            const labels = [
+                @foreach (var match in Model.RecentMatches)
+                {
+                    @: "@match.FinishedAt.ToString("dd.MM")",
+                }
+                        ];
+
+            const ratings = [
+                @foreach (var match in Model.RecentMatches)
+                {
+                    @: @match.LeetifyRating.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                }
+                        ];
+            const kdRatios = [
+                @foreach (var match in Model.RecentMatches)
+                {
+                    @: @match.KdRatio.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                }
+            ];
+
+            const kills = [
+                @foreach (var match in Model.RecentMatches)
+                {
+                    @: @match.Kills,
+                }
+            ];
+
+            const deaths = [
+                @foreach (var match in Model.RecentMatches)
+                {
+                    @: @match.Deaths,
+                }
+            ];
+
+            const ctx = document.getElementById('ratingChart');
+
+            if (ctx) {
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [...labels].reverse(),
+                        datasets: [{
+                            label: 'Leetify Rating',
+                            data: [...ratings].reverse(),
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+
+
+        const selector = document.getElementById('metricSelector');
+
+        selector.addEventListener('change', function () {
+
+            let data;
+            let label;
+
+            switch (this.value) {
+
+                case "kd":
+                    data = kdRatios;
+                    label = "K/D Ratio";
+                    break;
+
+                case "kills":
+                    data = kills;
+                    label = "Kills";
+                    break;
+
+                case "deaths":
+                    data = deaths;
+                    label = "Deaths";
+                    break;
+
+                default:
+                    data = ratings;
+                    label = "Leetify Rating";
+                    break;
+            }
+
+
+                    chart.data.datasets[0].data = [...data].reverse();
+            chart.data.datasets[0].label = label;
+
+            chart.update();
+
+        });
+            }
+        </script>
+    }
 }
