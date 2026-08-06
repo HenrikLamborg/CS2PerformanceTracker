@@ -4,6 +4,18 @@ A CS2 player performance tracking application built with ASP.NET Core and C#.
 
 The application allows users to search for Counter-Strike 2 players using a Steam ID, Steam profile URL, or Steam vanity URL, and retrieves player statistics from Leetify.
 
+## Dashboard
+
+The dashboard provides an overview of player performance, including Steam profile information, Leetify statistics, performance summaries, and recent matches.
+
+![CS2 Performance Tracker Dashboard](docs/images/dashboard.png)
+
+## Performance Analytics
+
+The application provides interactive performance trends where users can switch between different metrics such as Leetify Rating, K/D ratio, kills, and deaths.
+
+![Performance Trend and Recent Matches](docs/images/recent-match-and-graph.png)
+
 ## Features
 
 - Search players using:
