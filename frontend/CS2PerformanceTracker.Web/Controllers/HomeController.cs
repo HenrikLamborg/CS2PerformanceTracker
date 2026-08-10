@@ -104,11 +104,36 @@ public class HomeController : Controller
             MapName = match.MapName,
             FinishedAt = match.FinishedAt,
 
+            SteamId = player.SteamId,
+
             Kills = match.Kills,
             Deaths = match.Deaths,
 
             KdRatio = match.KdRatio,
             LeetifyRating = match.LeetifyRating,
+
+            Mvps = match.Mvps,
+            Dpr = match.Dpr,
+            TotalAssists = match.TotalAssists,
+            TotalDamage = match.TotalDamage,
+            TotalHsKills = match.TotalHsKills,
+
+            Accuracy = match.Accuracy,
+            AccuracyHead = match.AccuracyHead,
+            ReactionTime = match.ReactionTime,
+            CounterStrafingGoodRatio = match.CounterStrafingGoodRatio,
+            Preaim = match.Preaim,
+            SprayAccuracy = match.SprayAccuracy,
+
+            HeThrown = match.HeThrown,
+            MolotovThrown = match.MolotovThrown,
+            SmokeThrown = match.SmokeThrown,
+            FlashbangThrown = match.FlashbangThrown,
+            FlashbangHitFoe = match.FlashbangHitFoe,
+            FlashbangLeadingToKill = match.FlashbangLeadingToKill,
+            FlashAssist = match.FlashAssist,
+            HeFoesDamageAvg = match.HeFoesDamageAvg,
+            UtilityOnDeathAvg = match.UtilityOnDeathAvg,
 
             Won = match.Won,
             Score = match.Score
