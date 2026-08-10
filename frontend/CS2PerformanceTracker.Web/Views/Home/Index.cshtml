@@ -41,7 +41,7 @@
     Analyze player performance using Steam and Leetify data
 </p>
 
-<form method="post" class="mb-5">
+<form method="get" class="mb-5">
 
     <div class="mb-3">
         <label class="form-label">
@@ -282,7 +282,12 @@
                                             @match.Score
                                         </td>
 
-                                        <td>@match.MapName</td>
+                                        <td>
+                                            <a href="@Url.Action("Match", "Home", new { steamId = Model.Player.SteamId, id = match.Id })"
+                                               class="text-decoration-none">
+                                                @match.MapName
+                                            </a>
+                                        </td>   
 
                                         <td>
                                             @match.FinishedAt.ToString("dd.MM.yyyy")

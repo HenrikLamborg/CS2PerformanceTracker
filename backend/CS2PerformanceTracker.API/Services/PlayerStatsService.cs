@@ -53,6 +53,7 @@ public class PlayerStatsService
 
         return new RecentMatchResponse
         {
+            Id = match.Id,
             MapName = match.MapName,
             FinishedAt = match.FinishedAt,
 

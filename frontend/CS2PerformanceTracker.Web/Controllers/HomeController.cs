@@ -25,17 +25,16 @@ public class HomeController : Controller
         _configuration = configuration;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> Index(string steamId)
+    [HttpGet]
+    public async Task<IActionResult> Index(string? steamId)
     {
         if (string.IsNullOrWhiteSpace(steamId))
         {
-            ViewBag.Error = "Please enter a Steam ID or Steam profile URL.";
+            if (Request.Query.ContainsKey("steamId"))
+            {
+                ViewBag.Error = "Please enter a Steam ID or Steam profile URL.";
+            }
+
             return View();
         }
 
@@ -69,6 +68,53 @@ public class HomeController : Controller
         };
 
         return View(dashboard);
+    }
+
+    public async Task<IActionResult> Match(string steamId, string id)
+    {
+        var apiUrl = _configuration["ApiSettings:BaseUrl"];
+
+        var response = await _httpClient.GetAsync(
+            $"{apiUrl}/api/stats/{Uri.EscapeDataString(steamId)}"
+        );
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return NotFound();
+        }
+
+        var player =
+            await response.Content.ReadFromJsonAsync<PlayerStatsResponse>();
+
+        if (player == null)
+        {
+            return NotFound();
+        }
+
+        var match = player.RecentMatches
+            .FirstOrDefault(m => m.Id == id);
+
+        if (match == null)
+        {
+            return NotFound();
+        }
+
+        var viewModel = new MatchDetailsViewModel
+        {
+            MapName = match.MapName,
+            FinishedAt = match.FinishedAt,
+
+            Kills = match.Kills,
+            Deaths = match.Deaths,
+
+            KdRatio = match.KdRatio,
+            LeetifyRating = match.LeetifyRating,
+
+            Won = match.Won,
+            Score = match.Score
+        };
+
+        return View(viewModel);
     }
 
     public IActionResult Privacy()

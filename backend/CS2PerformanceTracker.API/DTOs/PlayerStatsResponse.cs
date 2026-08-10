@@ -35,6 +35,8 @@
 
     public class RecentMatchResponse
     {
+        public string Id { get; set; } = string.Empty;
+
         public string MapName { get; set; } = string.Empty;
 
         public DateTime FinishedAt { get; set; }
