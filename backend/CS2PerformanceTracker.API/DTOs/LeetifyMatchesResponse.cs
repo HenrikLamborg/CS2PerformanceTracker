@@ -47,5 +47,65 @@ namespace CS2PerformanceTracker.API.DTOs
 
         [JsonPropertyName("leetify_rating")]
         public double LeetifyRating { get; set; }
+
+        [JsonPropertyName("mvps")]
+        public int Mvps { get; set; }
+
+        [JsonPropertyName("dpr")]
+        public double Dpr { get; set; }
+
+        [JsonPropertyName("total_assists")]
+        public int TotalAssists { get; set; }
+
+        [JsonPropertyName("total_damage")]
+        public int TotalDamage { get; set; }
+
+        [JsonPropertyName("total_hs_kills")]
+        public int TotalHsKills { get; set; }
+
+        [JsonPropertyName("accuracy")]
+        public double Accuracy { get; set; }
+
+        [JsonPropertyName("accuracy_head")]
+        public double AccuracyHead { get; set; }
+
+        [JsonPropertyName("reaction_time")]
+        public double ReactionTime { get; set; }
+
+        [JsonPropertyName("counter_strafing_shots_good_ratio")]
+        public double CounterStrafingGoodRatio { get; set; }
+
+        [JsonPropertyName("preaim")]
+        public double Preaim { get; set; }
+
+        [JsonPropertyName("spray_accuracy")]
+        public double SprayAccuracy { get; set; }
+
+        [JsonPropertyName("he_thrown")]
+        public int HeThrown { get; set; }
+
+        [JsonPropertyName("molotov_thrown")]
+        public int MolotovThrown { get; set; }
+
+        [JsonPropertyName("smoke_thrown")]
+        public int SmokeThrown { get; set; }
+
+        [JsonPropertyName("flashbang_thrown")]
+        public int FlashbangThrown { get; set; }
+
+        [JsonPropertyName("flashbang_hit_foe")]
+        public int FlashbangHitFoe { get; set; }
+
+        [JsonPropertyName("flashbang_leading_to_kill")]
+        public int FlashbangLeadingToKill { get; set; }
+
+        [JsonPropertyName("flash_assist")]
+        public int FlashAssist { get; set; }
+
+        [JsonPropertyName("he_foes_damage_avg")]
+        public double HeFoesDamageAvg { get; set; }
+
+        [JsonPropertyName("utility_on_death_avg")]
+        public double UtilityOnDeathAvg { get; set; }
     }
 }
