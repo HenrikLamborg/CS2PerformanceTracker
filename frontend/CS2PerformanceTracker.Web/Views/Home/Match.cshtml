@@ -62,10 +62,22 @@
 
         </div>
 
-        <h3 class="mb-3">
-            Combat Stats
-        </h3>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">
+                Combat Stats
+            </h3>
 
+            <button class="btn btn-outline-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#combatStats"
+                    aria-expanded="true"
+                    aria-controls="combatStats">
+                −
+            </button>
+        </div>
+
+        <div id="combatStats" class="collapse show">
         <div class="row">
 
             <div class="col-md-3 mb-3">
@@ -150,15 +162,27 @@
                     </div>
                 </div>
             </div>
-
+            </div>
         </div>
 
         <div class="mt-5">
 
-            <h3 class="mb-3">
-                Aim Performance
-            </h3>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">
+                    Aim Performance
+                </h3>
 
+                <button class="btn btn-outline-light"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#aimPerformance"
+                        aria-expanded="false"
+                        aria-controls="aimPerformance">
+                    −
+                </button>
+            </div>
+
+            <div id="aimPerformance" class="collapse">
             <div class="row">
 
                 <div class="col-md-4 mb-3">
@@ -228,16 +252,28 @@
                 </div>
 
             </div>
-
+            </div>
         </div>
 
 
         <div class="mt-5">
 
-            <h3 class="mb-3">
-                Utility Performance
-            </h3>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">
+                    Utility Performance
+                </h3>
 
+                <button class="btn btn-outline-light"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#utilityPerformance"
+                        aria-expanded="false"
+                        aria-controls="utilityPerformance">
+                    −
+                </button>
+            </div>
+
+            <div id="utilityPerformance" class="collapse">
             <div class="row">
 
                 <div class="col-md-3 mb-3">
@@ -322,7 +358,7 @@
                 </div>
 
             </div>
-
+            </div>
         </div>
 
     </div>
