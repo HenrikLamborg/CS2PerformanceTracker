@@ -1,5 +1,20 @@
 ﻿@model CS2PerformanceTracker.Web.Viewmodels.MatchDetailsViewModel
 
+@{
+    string mapImage = Model.MapName switch
+    {
+        "de_dust2" => "/images/maps/de_dust2.png",
+        "de_mirage" => "/images/maps/de_mirage.png",
+        "de_nuke" => "/images/maps/de_nuke.png",
+        "de_cache" => "/images/maps/de_cache.png",
+        "de_inferno" => "/images/maps/de_inferno.png",
+        "de_overpass" => "/images/maps/de_overpass.png",
+        "de_vertigo" => "/images/maps/de_vertigo.png",
+        "de_ancient" => "/images/maps/de_ancient.png",
+        _ => "/images/maps/default.jpg"
+    };
+}
+
 <div class="card bg-dark text-light">
     <div class="card-body">
 
@@ -9,27 +24,42 @@
             ← Back to Dashboard
         </a>
 
-        <div class="mb-4 text-center">
-            <h1>
-                @Model.MapName
-            </h1>
+        <div class="card bg-dark text-light mb-5 overflow-hidden position-relative">
 
-            <p class="text-secondary">
-                @Model.FinishedAt.ToString("dd.MM.yyyy")
-            </p>
+            <img src="@mapImage"
+                 class="w-100"
+                 alt="@Model.MapName"
+                 style="height: 300px; object-fit: cover;" />
 
-            @if (Model.Won)
-            {
-                <span class="badge bg-success">WIN</span>
-            }
-            else
-            {
-                <span class="badge bg-danger">LOSS</span>
-            }
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                 style="background: rgba(0, 0, 0, 0.55);">
+            </div>
 
-            <h1 class="mt-3">
-                @Model.Score
-            </h1>
+            <div class="position-absolute top-50 start-50 translate-middle text-center w-100">
+
+                <h1 class="display-3 fw-bold">
+                    @Model.MapName
+                </h1>
+
+                @if (Model.Won)
+                {
+                    <span class="badge bg-success fs-6">WIN</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger fs-6">LOSS</span>
+                }
+
+                <h2 class="display-5 fw-bold mt-3">
+                    @Model.Score
+                </h2>
+
+                <p class="text-light mb-0">
+                    @Model.FinishedAt.ToString("dd.MM.yyyy")
+                </p>
+
+            </div>
+
         </div>
 
         <h3 class="mb-3">
