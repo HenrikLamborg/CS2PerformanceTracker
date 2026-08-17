@@ -31,6 +31,8 @@
         public List<RecentMatchResponse> RecentMatches { get; set; } = [];
 
         public PerformanceSummaryResponse PerformanceSummary { get; set; } = new();
+
+        public List<MapPerformanceResponse> MapPerformance { get; set; } = [];
     }
 
     public class RecentMatchResponse
@@ -93,5 +95,18 @@
 
         public double UtilityOnDeathAvg { get; set; }
 
+    }
+
+    public class MapPerformanceResponse
+    {
+        public string MapName { get; set; } = string.Empty;
+
+        public int MatchesPlayed { get; set; }
+
+        public int Wins { get; set; }
+
+        public double WinRate { get; set; }
+
+        public double AverageKd { get; set; }
     }
 }

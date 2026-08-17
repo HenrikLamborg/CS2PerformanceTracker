@@ -315,6 +315,44 @@
 
     </div>
 
+    <div class="mt-5">
+
+        <h3 class="mb-3">
+            Map Performance (last 50 games)
+        </h3>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Map</th>
+                        <th>Matches</th>
+                        <th>Wins</th>
+                        <th>Win Rate</th>
+                        <th>Average K/D</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var map in Model.Player.MapPerformance)
+                    {
+                        <tr>
+                            <td>@map.MapName</td>
+                            <td>@map.MatchesPlayed</td>
+                            <td>@map.Wins</td>
+                            <td>@map.WinRate.ToString("0.0")%</td>
+                            <td>@map.AverageKd.ToString("0.00")</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+
     <h3 class="mb-3">
         Performance Trend
     </h3>

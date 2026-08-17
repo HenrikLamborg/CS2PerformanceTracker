@@ -30,5 +30,7 @@ namespace CS2PerformanceTracker.Web.Models
         public List<RecentMatchViewModel> RecentMatches { get; set; } = [];
 
         public PerformanceSummaryViewModel PerformanceSummary { get; set; } = new();
+
+        public List<MapPerformanceViewModel> MapPerformance { get; set; } = [];
     }
 }
